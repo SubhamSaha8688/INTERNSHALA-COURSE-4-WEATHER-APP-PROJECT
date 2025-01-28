@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .bg-weather-blue {
+            background-color: #1e3a8a;
+        }
+        .bg-weather-gray {
+            background-color: #4b5563;
+        }
+        .backdrop-blur-sm {
+            backdrop-filter: blur(10px);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a, #4b5563);
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen flex items-center justify-center">
+    <div class="container mx-auto p-4">
+        <h1 class="text-4xl font-bold text-white text-center mb-8">Weather Dashboard</h1>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            
+            <div class="card p-6 rounded-lg shadow-lg">
+                <h2 class="text-lg text-white mb-2">Enter a City Name</h2>
+                <input 
+                    type="text" 
+                    id="cityInput" 
+                    placeholder="E.g., New York, London, Tokyo" 
+                    class="w-full p-3 rounded-lg mb-4 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                <div class="space-y-2">
+                    <button 
+                        id="searchBtn" 
+                        class="w-full bg-weather-blue text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
+                    >
+                        Search
+                    </button>
+                    
+                    <button 
+                        id="currentLocationBtn" 
+                        class="w-full bg-weather-gray text-white py-2 px-4 rounded-lg hover:bg-gray-600 transition-colors"
+                    >
+                        Use Current Location
+                    </button>
+                </div>
+                
+                <div id="recentSearches" class="mt-4 hidden">
+                    <select id="recentCities" class="w-full p-2 rounded-lg border border-gray-200">
+                        <option value="">Recent searches</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Current Weather Display -->
+            <div id="weatherInfo" class="hidden card p-6 rounded-lg text-white shadow-lg">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h2 id="cityDisplay" class="text-2xl font-bold mb-4"></h2>
+                        <div class="space-y-2">
+                            <p>Temperature: <span id="temperature" class="font-bold"></span>°C</p>
+                            <p>Wind: <span id="windSpeed" class="font-bold"></span> M/S</p>
+                            <p>Humidity: <span id="humidity" class="font-bold"></span>%</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img id="weatherIcon" src="/placeholder.svg" alt="Weather condition" class="w-16 h-16">
+                        <span id="weatherDescription" class="text-sm"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5-Day Forecast -->
+        <div id="forecast" class="mt-8">
+            <h2 class="text-xl font-bold text-white mb-4">5-Day Forecast</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4" id="forecastContainer">
+                
+            </div>
+        </div>
+
+        
+        <div id="errorMessage" class="hidden mt-4 p-4 bg-red-500 text-white rounded-lg"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
